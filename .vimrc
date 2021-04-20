@@ -60,9 +60,10 @@ set smartindent " indent, but smarter
 
 
 " Spaces & Tabs
-set tabstop=4 " number of visual spaces per tab
-set softtabstop=4 " number of spaces in tab while editting
-set shiftwidth=4 " number of spaces to use while shifting
+set expandtab " insert spaces instead of tabs
+set tabstop=2 " number of visual spaces per tab
+set softtabstop=2 " number of spaces in tab while editting
+set shiftwidth=2 " number of spaces to use while shifting
 
 
 " Searching
@@ -111,10 +112,6 @@ inoremap jk <esc>
 " My custom stuff
 " use w!! to save as sudo
 cnoremap w!! execute 'silent! write !sudo tee % > /dev/null' <bar> edit!<CR>
-
-" show tab lines
-set list
-set listchars=tab:\|\ 
 
 " toggle between absolute and relative line numbers
 map ln :set number! relativenumber!<CR>
