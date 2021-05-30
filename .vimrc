@@ -14,7 +14,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'preservim/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs' "disabled because the added ending pairs are not tabbed correctly when on a new line
 Plug 'dense-analysis/ale'
 Plug 'majutsushi/tagbar'
 Plug 'davidhalter/jedi-vim'
@@ -59,7 +59,7 @@ colorscheme elflord " best color scheme
 
 
 " UI Config
-set number " show line numbers
+set relativenumber " show line numbers
 set showcmd " show last command in bottom right
 set wildmenu " visual autocomplete for command menu
 set showmatch " highlights the matching [ { ( ) } ]
