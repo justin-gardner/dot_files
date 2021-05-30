@@ -126,15 +126,15 @@ inoremap jk <esc>
 
 
 " move through split windows
-nmap <leader><Up> :wincmd k<CR>
-nmap <leader><Down> :wincmd j<CR>
-nmap <leader><Left> :wincmd h<CR>
-nmap <leader><Right> :wincmd l<CR>
+nmap <leader>k :wincmd k<CR>
+nmap <leader>j :wincmd j<CR>
+nmap <leader>h :wincmd h<CR>
+nmap <leader>l :wincmd l<CR>
 
 " move through buffers
 nmap <leader>[ :bp!<CR>
 nmap <leader>] :bn!<CR>
-nmap <leader>x :bd<CR>
+nmap <leader>x :bp<CR>:bd #<CR>
 
 
 " restore place in file from previous session
