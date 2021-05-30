@@ -79,7 +79,7 @@ autocmd fileType vue setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 
 " auto-pairs
-au FileType python let b:AutoPairs = AutoPairsDefine({"f'" : "'", "r'" : "'", "b'" : "'"})
+"au FileType python let b:AutoPairs = AutoPairsDefine({"f'" : "'", "r'" : "'", "b'" : "'"})
 
 
 " Searching
