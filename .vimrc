@@ -134,7 +134,7 @@ nmap <leader>l :wincmd l<CR>
 " move through buffers
 nmap <leader>[ :bp!<CR>
 nmap <leader>] :bn!<CR>
-nmap <leader>x :bd<CR>
+nmap <leader>x :bp<CR>:bd #<CR>
 
 
 " restore place in file from previous session
