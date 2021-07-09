@@ -57,6 +57,9 @@ set nocompatible
 syntax enable " some machines need this
 colorscheme elflord " best color scheme
 
+" highlight errors as red text with yellow background, no idea where the yellow comes from but whatever
+hi SpellBad ctermfg=009 ctermbg=011 guifg=#ff0000 guibg=#0000ff
+
 
 " UI Config
 set relativenumber " show line numbers
