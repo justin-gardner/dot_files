@@ -78,6 +78,7 @@ set viminfo='25,\"50,n~/.viminfo
 autocmd fileType html setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd fileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd fileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd fileType javascriptreact setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd fileType vue setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 
