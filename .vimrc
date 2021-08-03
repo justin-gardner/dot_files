@@ -22,6 +22,7 @@ Plug 'vim-scripts/indentpython.vim'
 Plug 'lepture/vim-jinja'
 Plug 'pangloss/vim-javascript'
 Plug 'alvan/vim-closetag'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 filetype plugin indent on
