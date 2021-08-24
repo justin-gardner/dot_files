@@ -8,15 +8,15 @@ endif
 
 call plug#begin()
 Plug 'tpope/vim-sensible'
-Plug 'itchyny/lightline.vim'
-Plug 'ap/vim-buftabline'
-Plug 'airblade/vim-gitgutter'
 Plug 'preservim/nerdtree'
+Plug 'dense-analysis/ale'
+Plug 'preservim/tagbar'
+Plug 'preservim/nerdcommenter'
+Plug 'airblade/vim-gitgutter'
+Plug 'ryanoasis/vim-devicons'
+Plug 'ap/vim-buftabline'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-"Plug 'jiangmiao/auto-pairs' "disabled because the added ending pairs are not tabbed correctly when on a new line
-Plug 'dense-analysis/ale'
-Plug 'majutsushi/tagbar'
 Plug 'davidhalter/jedi-vim'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'lepture/vim-jinja'
@@ -24,8 +24,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-fugitive'
 call plug#end()
-
-filetype plugin indent on
 
 if need_to_install_plugins == 1
     echo "Installing plugins..."
@@ -35,18 +33,12 @@ if need_to_install_plugins == 1
 endif
 
 
-" always show the status bar
-set laststatus=2
-
-
-" enable 256 colors
 set t_Co=256
 set t_ut=
 
 
 " sane text files
 set fileformat=unix
-set encoding=utf-8
 set fileencoding=utf-8
 
 
@@ -55,19 +47,23 @@ set nocompatible
 
 
 " Colors
-syntax enable " some machines need this
 colorscheme elflord " best color scheme
+
 
 " highlight errors as red text with yellow background, no idea where the yellow comes from but whatever
 hi SpellBad ctermfg=009 ctermbg=011 guifg=#ff0000 guibg=#0000ff
 
 
+" SNIPPETS
+" Put each snippet in its own file in home/.vim/
+" Then create a map for that snippet
+nnoremap ,pydoc :-1read $HOME/.vim/.pydocstring<CR>
+
+
 " UI Config
 set relativenumber " show line numbers
 set showcmd " show last command in bottom right
-set wildmenu " visual autocomplete for command menu
 set showmatch " highlights the matching [ { ( ) } ]
-set smartindent " indent, but smarter
 
 
 " Spaces & Tabs
@@ -83,13 +79,10 @@ autocmd fileType javascriptreact setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd fileType vue setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 
-" auto-pairs
-"au FileType python let b:AutoPairs = AutoPairsDefine({"f'" : "'", "r'" : "'", "b'" : "'"})
-
-
 " Searching
 set incsearch " search as characters are entered
 set hlsearch " highlight matches
+
 
 " press enter to clear search highlighting
 nnoremap <CR> :noh<CR><CR>
@@ -100,8 +93,10 @@ set foldenable " enable folding
 set foldlevelstart=99 " open all folds by default
 set foldnestmax=99 " maximum number of nested folds allowed
 
+
 " <space> to open/close folds
 nnoremap <space> za
+
 
 " folds everything up to the current indentation level
 set foldmethod=indent
@@ -111,20 +106,26 @@ set foldmethod=indent
 " move down 1 line
 nnoremap j gj
 
+
 " move up 1 line
 nnoremap k gk
+
 
 " move to beginning of line
 nnoremap B ^
 
+
 " move to end of line
 nnoremap E $
+
 
 " map $ to nothing
 nnoremap $ <nop>
 
+
 " map ^ to nothing
 nnoremap ^ <nop>
+
 
 " jk is escape
 inoremap jk <esc>
@@ -136,6 +137,7 @@ nmap <leader>j :wincmd j<CR>
 nmap <leader>h :wincmd h<CR>
 nmap <leader>l :wincmd l<CR>
 
+
 " move through buffers
 nmap <leader>[ :bp!<CR>
 nmap <leader>] :bn!<CR>
@@ -146,7 +148,7 @@ nmap <leader>x :bp<CR>:bd #<CR>
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
-" file browser
+" nerdtree settings
 let NERDTreeShowHidden = 1
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let NERDTreeMinimalUI = 1
@@ -170,21 +172,16 @@ endfunction
 autocmd VimEnter * call StartUp()
 
 
-function! StartUp()
-    if 0 == argc()
-        NERDTree
-    end
-endfunction
-autocmd VimEnter * call StartUp()
-
 " ale
 map <C-e> <Plug>(ale_next_wrap)
 map <C-r> <Plug>(ale_previous_wrap)
 let g:ale_python_pylint_options = '--load-plugins pylint_django'
 let g:LanguageClient_serverCommands = {'vue': ['vls']}
 
+
 " tags
 map <leader>t :TagbarToggle<CR>
+
 
 "Use TAB to complete when typing words, else inserts TABs as usual.
 "Uses dictionary and source files to find matching words to complete.
@@ -204,6 +201,7 @@ endfunction
 :inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 :set dictionary="/usr/dict/words"
 
+
 " remove trailing whitespace
 function! <SID>StripTrailingWhitespaces()
   if !&binary && &filetype != 'diff'
@@ -217,12 +215,13 @@ autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre,FileWritePre,Fil
     \ :call <SID>StripTrailingWhitespaces()
 
 
-" My custom stuff
 " use w!! to save as sudo
 cnoremap w!! execute 'silent! write !sudo tee % > /dev/null' <bar> edit!<CR>
 
+
 " toggle between absolute and relative line numbers
 map ln :set number! relativenumber!<CR>
+
 
 " Disable bell during insert mode, to avoid beep with 'showmatch'
 " Source: https://code.google.com/p/vim/issues/detail?id=319
