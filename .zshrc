@@ -18,3 +18,4 @@ export EDITOR='vim'
 # Aliases
 alias ll="ls -la"
 alias please="sudo"
+alias git-rm-branches="git checkout main && git branch | grep -v 'main' | xargs git branch -D"
