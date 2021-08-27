@@ -175,8 +175,16 @@ autocmd VimEnter * call StartUp()
 " ale
 map <C-e> <Plug>(ale_next_wrap)
 map <C-r> <Plug>(ale_previous_wrap)
-let g:ale_python_pylint_options = '--load-plugins pylint_django'
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'python': ['flake8', 'pydocstyle', 'bandit', 'mypy']
+\}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python': ['black', 'isort']
+\}
 let g:LanguageClient_serverCommands = {'vue': ['vls']}
+let g:ale_fix_on_save = 1
 
 
 " tags
