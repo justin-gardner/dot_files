@@ -1,0 +1,26 @@
+"""
+Summary goes here.
+
+Extended details go here.
+
+Parameters
+----------
+param1 : int
+    The first parameter.
+param2 : :obj:`str`, optional
+    The second parameter.
+*args
+    Variable length argument list.
+**kwargs
+    Arbitrary keyword arguments.
+
+Returns
+-------
+bool
+    True if successful, False otherwise.
+
+Raises
+------
+ValueError
+    If `param2` is equal to `param1`.
+"""
