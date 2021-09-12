@@ -129,5 +129,19 @@ module.exports = {
         'ignores': [],
       },
     ],
+    'vue/multiline-html-element-content-newline': [
+      'error', {
+        'allowEmptyLines': false,
+        'ignoreWhenEmpty': true,
+        'ignores': [],
+      },
+    ],
+    'vue/v-slot-style': [
+      'error', {
+        'atComponent': 'v-slot',
+        'default': 'shorthand',
+        'named': 'shorthand',
+      },
+    ],
   },
 }
