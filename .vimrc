@@ -58,6 +58,7 @@ hi SpellBad ctermfg=009 ctermbg=011 guifg=#ff0000 guibg=#0000ff
 " Put each snippet in its own file in home/.vim/
 " Then create a map for that snippet
 nnoremap ,pydoc :-1read $HOME/.vim/.pydocstring<CR>
+nnoremap ,vue :-1read $HOME/.vim/.vue<CR>
 
 
 " UI Config
