@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    Hello, World!
+    Hello World
   </v-container>
 </template>
 

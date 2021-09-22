@@ -104,3 +104,7 @@ set PATH /home/jgardner/.local/bin $PATH
 if status --is-interactive
    neofetch
 end
+
+if status --is-login
+    tmux && exec tmux attach || exec tmux
+end
