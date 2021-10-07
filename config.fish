@@ -93,6 +93,7 @@ end
 ## Useful aliases
 # Replace ls with exa
 alias ll='exa -al --color=always --group-directories-first --icons'  # long format
+alias git-rm-branches='git for-each-ref --format "%(refname:short)" refs/heads | grep -v "master\|main\|develop\|development" | xargs git branch -D'
 
 # Replace some more things with better alternatives
 alias cat='bat --style header --style rules --style snip --style changes --style header'
