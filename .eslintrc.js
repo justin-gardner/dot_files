@@ -8,10 +8,14 @@ module.exports = {
   extends: [
     '@vue/airbnb',
     'plugin:vue/recommended',
+    '@vue/typescript/recommended',
   ],
   plugins: [
     'import',
   ],
+  parserOptions: {
+    ecmaVersion: 2020,
+  },
   settings: {
     'import/resolver': {
       'alias': {
@@ -144,4 +148,15 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      files: [
+        '**/__tests__/*.{j,t}s?(x)',
+        '**/tests/unit/**/*.spec.{j,t}s?(x)',
+      ],
+      env: {
+        jest: true,
+      },
+    },
+  ],
 }
