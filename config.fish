@@ -1,4 +1,4 @@
-﻿## Set values
+## Set values
 # Hide welcome message
 set fish_greeting
 set VIRTUAL_ENV_DISABLE_PROMPT "1"
@@ -36,7 +36,7 @@ end
 
 ## Starship prompt
 if status --is-interactive
-   source ("/usr/bin/starship" init fish --print-full-init | psub)
+   source ("/usr/local/bin/starship" init fish --print-full-init | psub)
 end
 
 
@@ -94,6 +94,13 @@ end
 # Replace ls with exa
 alias ll='exa -al --color=always --group-directories-first --icons'  # long format
 alias git-rm-branches='git for-each-ref --format "%(refname:short)" refs/heads | grep -v "master\|main\|develop\|development" | xargs git branch -D'
+alias rebase='~/apps/scripts/rebase'
+alias cleanpush='~/apps/scripts/cleanpush'
+alias dc='docker-compose'
+
+# app aliases
+alias cropgen='cd ~/apps/cropgen/'
+alias bookkeeping='cd ~/apps/bookkeeping/'
 
 # Replace some more things with better alternatives
 alias cat='bat --style header --style rules --style snip --style changes --style header'
@@ -106,6 +113,14 @@ if status --is-interactive
    neofetch
 end
 
-if status --is-login
-    tmux && exec tmux attach || exec tmux
-end
+# Generated for envman. Do not edit.
+test -s "$HOME/.config/envman/load.fish"; and source "$HOME/.config/envman/load.fish"
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/justin/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/justin/Downloads/google-cloud-sdk/path.fish.inc'; end
+
+# Bun
+set -Ux BUN_INSTALL "/Users/justin/.bun"
+set -px --path PATH "/Users/justin/.bun/bin"
+

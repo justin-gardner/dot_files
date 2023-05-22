@@ -8,7 +8,6 @@ module.exports = {
   extends: [
     '@vue/airbnb',
     'plugin:vue/recommended',
-    '@vue/typescript/recommended',
   ],
   plugins: [
     'import',
