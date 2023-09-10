@@ -107,6 +107,8 @@ alias ip='ip -color'
 # Custom aliases
 alias git-rm-branches='git for-each-ref --format "%(refname:short)" refs/heads | grep -v "master\|main\|develop\|development" | xargs git branch -D'
 alias dc='docker-compose'
+alias cleanpush='/bin/sh /data/git_scripts/cleanpush'
+alias rebase='/bin/sh /data/git_scripts/rebase'
 
 # Replace some more things with better alternatives
 alias cat='bat --style header --style snip --style changes --style header'
