@@ -2,30 +2,33 @@
   description = "Justin's Home Manager Flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
+    flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
   outputs = {
-    nixpkgs,
+    flake-utils,
     home-manager,
+    nixpkgs,
     ...
-  }: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    formatter.${system} = pkgs.alejandra;
+  }:
+    flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      formatter = pkgs.alejandra;
 
-    homeConfigurations.justin = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
+      legacyPackages.homeConfigurations = {
+        justin = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
 
-      modules = [
-        ./home.nix
-      ];
-    };
-  };
+          modules = [
+            ./home.nix
+          ];
+        };
+      };
+    });
 }
