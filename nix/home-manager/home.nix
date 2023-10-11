@@ -79,8 +79,5 @@
     tmux = {
       enable = true;
     };
-    neovim = {
-      enable = true;
-    };
   };
 }
