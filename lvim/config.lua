@@ -22,10 +22,15 @@ vim.opt.shell = "/bin/sh"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
--- add your own keymapping
+
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<leader>nh"] = ":nohl<cr>"
-vim.keymap.set('i', 'jk', '<esc>')
+lvim.keys.normal_mode["$"] = "<Nop>"
+lvim.keys.normal_mode["^"] = "<Nop>"
+lvim.keys.normal_mode["B"] = "^"
+lvim.keys.normal_mode["E"] = "$"
+
+lvim.keys.insert_mode["jk"] = "<esc>"
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 -- unmap a default keymapping
@@ -141,7 +146,6 @@ formatters.setup {
   { command = "black", filetypes = { "python" } },
   { command = "isort", filetypes = { "python" } },
 }
-lvim.format_on_save.enabled = true
 
 -- set additional linters
 local linters = require "lvim.lsp.null-ls.linters"
