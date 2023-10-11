@@ -75,29 +75,14 @@ draw_bold_text_with_bright_colors: true
 
 # Font configuration (changes require restart)
 font:
-  # The normal (roman) font face to use.
   normal:
-    # family: "Fira Code"
-    # family: "Roboto Mono"
-    family: "FiraCode Nerd Font"
-    # family: "Droid Sans Mono"
-    # Style can be specified to pick a specific face.
-    # style: Regular
-
-  # The bold font face
+    family: "Hack Nerd Font"
+    style: Regular
   bold:
-    # family: "Roboto Mono"
-    family: "FiraCode Nerd Font"
-    # family: "Droid Sans Mono"
-    # Style can be specified to pick a specific face.
+    family: "Hack Nerd Font"
     style: Bold
-
-  # The italic font face
   italic:
-    # family: "Roboto Mono"
-    # family: "Droid Sans Mono"
-    family: "FiraCode Nerd Font"
-    # Style can be specified to pick a specific face.
+    family: "Hack Nerd Font"
     style: Italic
 
   # Point size of the font
