@@ -4,19 +4,15 @@
   ...
 }: {
   home = {
-    username = "justin";
+    file = {};
     homeDirectory = "/home/justin";
-    stateVersion = "23.05";
-
     packages = with pkgs; [
     ];
-
-    file = {
-    };
-
     sessionVariables = {
       EDITOR = "nvim";
     };
+    stateVersion = "23.05";
+    username = "justin";
   };
   programs = {
     alacritty = {
@@ -25,12 +21,13 @@
     fish = {
       enable = true;
       interactiveShellInit = ''
-        alias ls='exa -al --color=always --group-directories-first --icons'
         alias ll='exa -l --color=always --group-directories-first --icons'
+        alias ls='exa -al --color=always --group-directories-first --icons'
+        alias x='echo "UR MOM"'
 
+        alias cleanpush='/bin/sh ~/git_scripts/cleanpush'
         alias g='git'
         alias git-rm-branches='git for-each-ref --format "%(refname:short)" refs/heads | grep -v "master\|main\|develop\|development" | xargs git branch -D'
-        alias cleanpush='/bin/sh ~/git_scripts/cleanpush'
         alias rebase='/bin/sh ~/git_scripts/rebase'
 
         alias hmd='cd ~/dot_files/nix/home-manager'
@@ -51,16 +48,16 @@
     };
     git = {
       aliases = {
-        s = "status";
+        br = "branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate";
         co = "checkout";
         cob = "checkout -b";
         del = "branch -D";
-        br = "branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate";
-        save = "!git add -A && git commit -m 'chore: checkpoint'";
-        undo = "reset HEAD~1 --mixed";
-        res = "!git reset --hard";
         done = "!git push origin HEAD";
         lg = "!git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30";
+        res = "!git reset --hard";
+        s = "status";
+        save = "!git add -A && git commit -m 'chore: checkpoint'";
+        undo = "reset HEAD~1 --mixed";
       };
       enable = true;
       extraConfig = {
@@ -72,9 +69,44 @@
     home-manager = {
       enable = true;
     };
-    neovim = {
+    neovim = let
+      toLua = str: "lua << EOF\n${str}\nEOF\n";
+      toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
+    in {
       defaultEditor = true;
       enable = true;
+      extraLuaConfig = ''
+        ${builtins.readFile ./nvim/options.lua}
+        ${builtins.readFile ./nvim/keymaps.lua}
+      '';
+      plugins = with pkgs.vimPlugins; [
+        popup-nvim
+        plenary-nvim
+        {
+          plugin = tokyonight-nvim;
+          config = "colorscheme tokyonight-night";
+        }
+
+        # cmp plugins
+        nvim-cmp
+        cmp-buffer
+        cmp-path
+        cmp-cmdline
+        cmp-nvim-lsp
+        cmp_luasnip
+
+        # snippets plugins
+        luasnip
+        friendly-snippets
+
+        # LSP plugins
+        nvim-lspconfig
+        mason-lspconfig-nvim
+        null-ls-nvim
+      ];
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
     };
     tmux = {
       enable = true;
