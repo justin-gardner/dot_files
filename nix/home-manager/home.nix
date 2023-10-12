@@ -23,7 +23,6 @@
       interactiveShellInit = ''
         alias ll='exa -l --color=always --group-directories-first --icons'
         alias ls='exa -al --color=always --group-directories-first --icons'
-        alias x='echo "UR MOM"'
 
         alias cleanpush='/bin/sh ~/git_scripts/cleanpush'
         alias g='git'
@@ -60,9 +59,6 @@
         undo = "reset HEAD~1 --mixed";
       };
       enable = true;
-      extraConfig = {
-        core.editor = "nvim";
-      };
       userEmail = "github.frugally996@passmail.net";
       userName = "Justin Gardner";
     };
@@ -76,8 +72,7 @@
       defaultEditor = true;
       enable = true;
       extraLuaConfig = ''
-        ${builtins.readFile ./nvim/options.lua}
-        ${builtins.readFile ./nvim/keymaps.lua}
+        ${builtins.readFile ./nvim/init.lua}
       '';
       plugins = with pkgs.vimPlugins; [
         popup-nvim
@@ -92,17 +87,11 @@
         cmp-buffer
         cmp-path
         cmp-cmdline
-        cmp-nvim-lsp
         cmp_luasnip
 
         # snippets plugins
         luasnip
         friendly-snippets
-
-        # LSP plugins
-        nvim-lspconfig
-        mason-lspconfig-nvim
-        null-ls-nvim
       ];
       viAlias = true;
       vimAlias = true;
