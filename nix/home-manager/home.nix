@@ -92,6 +92,8 @@
         # snippets plugins
         luasnip
         friendly-snippets
+
+        telescope-nvim
       ];
       viAlias = true;
       vimAlias = true;
